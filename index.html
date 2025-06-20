@@ -1,11 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Rythmiq Music Group</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rythmiq Music Group Inc.</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0d0d0d;
+      color: #f0f0f0;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 10;
+    }
+
+    header h1 {
+      color: #d4af37;
+    }
+
+    nav a {
+      color: #ccc;
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #d4af37;
+    }
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(0.3);
+    }
+
+    .hero-content {
+      z-index: 1;
+      color: #fff;
+      animation: fadeIn 2s ease-out;
+    }
+
+    .hero-content h2 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-content p {
+      font-size: 1.3rem;
+      color: #ccc;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 900px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section h3 {
+      color: #d4af37;
+      margin-bottom: 1rem;
+    }
+
+    .artists img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-right: 1rem;
+    }
+
+    .artists {
+      display: flex;
+      align-items: center;
+      margin-top: 1rem;
+    }
+
+    footer {
+      background: #111;
+      color: #666;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      border-top: 1px solid #222;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @media (max-width: 600px) {
+      .hero-content h2 { font-size: 2rem; }
+      .artists { flex-direction: column; }
+      .artists img { margin-bottom: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Rythmiq Music</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#artists">Artists</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <video autoplay muted loop>
+      <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero-content">
+      <h2>Rythmiq Music Group Inc.</h2>
+      <p>Where Sound Meets Soul</p>
+    </div>
+  </section>
+
+  <section id="about">
+    <h3>About Us</h3>
+    <p>
+      We are a full-service music production and artist development company
+      shaping the future of sound through innovation, creativity, and soul.
+    </p>
+  </section>
+
+  <section id="artists">
+    <h3>Our Artists</h3>
+    <div class="artists">
+      <img src="https://via.placeholder.com/150" alt="Artist One">
+      <p><strong>Artist One</strong> – R&B / Soul Innovator</p>
+    </div>
+    <div class="artists">
+      <img src="https://via.placeholder.com/150" alt="Artist Two">
+      <p><strong>Artist Two</strong> – Hip-Hop Visionary</p>
+    </div>
+  </section>
+
+  <section id="services">
+    <h3>Services</h3>
+    <ul>
+      <li>Music Production</li>
+      <li>Artist Management</li>
+      <li>Distribution & Marketing</li>
+      <li>Talent Development</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h3>Contact</h3>
+    <p>Email: <a href="mailto:contact@rythmiqmusicgroup.xyz" style="color:#d4af37;">contact@rythmiqmusicgroup.xyz</a></p>
+  </section>
+
+  <footer>
+    &copy; 2025 Rythmiq Music Group Inc. All rights reserved.
+  </footer>
+
+  <script>
+    // Fade in sections on scroll
+    const sections = document.querySelectorAll('section');
+    const options = { threshold: 0.1 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, options);
+    sections.forEach(section => observer.observe(section));
+  </script>
+
+</body>
 </html>
